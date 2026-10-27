@@ -1,6 +1,6 @@
 # Guildspace: Community Skill Exchange & Mentorship Platform
 
-**Live site:** https://tanishqtiwari1.github.io/Guildspace/ (frontend on GitHub Pages; needs the backend deployed, see *Deploying* below)
+**Live site:** https://tanishqtiwari1.github.io/Guildspace/ (frontend on GitHub Pages, backend at https://guildspace-api.onrender.com). The free backend sleeps when idle, so the first login can take about 30 seconds.
 
 React frontend → REST API (FastAPI) → SQLAlchemy → SQLite. Every score, list and statistic is computed from database records at request time.
 
@@ -37,7 +37,7 @@ The site has two halves: the React frontend (static files) and the FastAPI backe
 
 1. **Frontend → GitHub Pages.** `.github/workflows/pages.yml` builds `web-frontend` and publishes it on every push to `main`. One-time setup: repo **Settings → Pages → Source: GitHub Actions**.
 2. **Backend → Render (free).** On render.com: **New → Blueprint →** pick this repo. `render.yaml` sets up the service, a generated `SECRET_KEY`, CORS for the Pages site, and demo data on start. Free instances sleep when idle (the first request takes about 30 s) and reset their SQLite data on redeploy.
-3. **Connect them.** Copy the Render URL (for example `https://guildspace-api.onrender.com`) into repo **Settings → Secrets and variables → Actions → Variables** as `API_URL`, then re-run the *Deploy frontend to GitHub Pages* workflow.
+3. **Connect them.** The workflow points the site at `https://guildspace-api.onrender.com` by default. If the backend moves, set its URL as the `API_URL` repository variable (**Settings → Secrets and variables → Actions → Variables**) and re-run the workflow.
 
 ## Faculty & academic module
 
