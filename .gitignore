@@ -1,0 +1,21 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Python backend
+backend/venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# Local database and generated signing key: never commit
+*.db
+backend/.secret_key
+.env
+
+# Frontend
+web-frontend/node_modules/
+web-frontend/dist/
+
+# Tool logs
+.gstack/

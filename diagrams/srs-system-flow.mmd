@@ -1,0 +1,21 @@
+graph TD
+    START([Start]) --> AUTH["Register / Login<br/>FR1-FR2"]
+    AUTH --> ROLE{Admin?}
+    ROLE -- Yes --> ADMIN["Admin: manage users,<br/>skills and reports<br/>FR3, FR28"]
+    ROLE -- No --> PROFILE["Dashboard, profile,<br/>skills and availability<br/>FR4-FR8, FR29"]
+    PROFILE --> MATCH["Search and ranked matches<br/>with explanation<br/>FR9-FR12"]
+    MATCH --> REQ["Send mentorship request<br/>FR13"]
+    REQ --> ACC{"Mentor accepts?<br/>FR14-FR15"}
+    ACC -- No --> MATCH
+    ACC -- Yes --> SCHED["Schedule session<br/>(availability checked)<br/>FR16-FR18"]
+    SCHED --> DONE["Session completed"]
+    DONE --> FEED["Feedback and reports<br/>FR26-FR27"]
+    DONE --> AI["AI learning plan and summary<br/>(fallback if unavailable)<br/>FR21-FR25"]
+    FEED --> ADMIN
+    REQ -. updates .-> COMM["Messages and notifications<br/>FR19-FR20"]
+    SCHED -. updates .-> COMM
+    ADMIN --> FINISH([End])
+    AI --> FINISH
+
+    classDef one fill:#EEF2FF,stroke:#4F46E5,stroke-width:1.5px,color:#1E1B4B
+    class START,AUTH,ROLE,ADMIN,PROFILE,MATCH,REQ,ACC,SCHED,DONE,FEED,AI,COMM,FINISH one
