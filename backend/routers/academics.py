@@ -120,8 +120,8 @@ def extra_class_ics(class_id: int, user: models.User = Depends(require_student),
     x = A.visible_extra_class(db, class_id, user.id)
     fmt = "%Y%m%dT%H%M%S"
     body = "\r\n".join([
-        "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//SkillSwap//Academics//EN", "BEGIN:VEVENT",
-        f"UID:extra-class-{x.id}@skillswap", f"DTSTAMP:{datetime.datetime.now(datetime.timezone.utc):%Y%m%dT%H%M%SZ}",
+        "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Guildspace//Academics//EN", "BEGIN:VEVENT",
+        f"UID:extra-class-{x.id}@guildspace", f"DTSTAMP:{datetime.datetime.now(datetime.timezone.utc):%Y%m%dT%H%M%SZ}",
         f"DTSTART:{x.start_at.strftime(fmt)}", f"DTEND:{x.end_at.strftime(fmt)}",
         f"SUMMARY:{_ics_escape(x.course.name + ' — Extra class: ' + x.topic)}",
         f"LOCATION:{_ics_escape(x.location)}",

@@ -1,0 +1,18 @@
+# One-click backend deploy on Render (free plan). Render > New > Blueprint > pick this repo.
+services:
+  - type: web
+    name: guildspace-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    # Seeds the skill list and demo accounts on each start (free disks reset on redeploy).
+    startCommand: python seed.py --demo && uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: FRONTEND_ORIGINS
+        value: https://tanishqtiwari1.github.io,http://localhost:5173
+      - key: SECRET_KEY
+        generateValue: true

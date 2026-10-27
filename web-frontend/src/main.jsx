@@ -8,7 +8,7 @@ import { FeedbackProvider } from './components/feedback.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <AuthProvider>
         <FeedbackProvider>
           <App />

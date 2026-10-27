@@ -56,6 +56,9 @@ export default function Login() {
         <form className="card" onSubmit={submit}>
           <h2 style={{ fontSize: 24 }}>Welcome back</h2>
           <p className="muted">Log in to your Guildspace account</p>
+          {!import.meta.env.VITE_API_URL && window.location.hostname.endsWith('github.io') && (
+            <div className="alert warn">This preview has no backend connected yet, so logging in won't work. Run the project locally (see the README) or deploy the backend.</div>
+          )}
           <ErrorBox>{error}</ErrorBox>
           <div className="field">
             <label htmlFor="email">Email</label>

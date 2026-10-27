@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const TOKEN_KEY = 'skillswap_token'
+const TOKEN_KEY = 'guildspace_token'
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
@@ -38,6 +38,10 @@ export function errorText(err) {
   const d = err?.response?.data?.detail
   if (Array.isArray(d)) return d.map((e) => `${e.loc?.slice(-1)[0] ?? ''}: ${e.msg.replace(/^Value error, /, '')}`).join('; ')
   if (typeof d === 'string') return d
-  if (err?.code === 'ERR_NETWORK') return 'Cannot reach the server. Is the backend running on port 8000?'
+  if (err?.code === 'ERR_NETWORK') {
+    return import.meta.env.VITE_API_URL
+      ? 'Cannot reach the Guildspace server. It may be waking up (free hosting sleeps when idle); try again in 30 seconds.'
+      : 'Cannot reach the server. Is the backend running on port 8000?'
+  }
   return err?.message || 'Something went wrong'
 }
