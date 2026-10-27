@@ -1,4 +1,5 @@
 name: Deploy frontend to GitHub Pages
+# Requires repo Settings > Pages > Source: GitHub Actions (otherwise Pages renders the README).
 
 on:
   push:
